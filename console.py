@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         if arg:
             try:
-                args = line.split(" ")
+                args = arg.split(" ")
                 new_instance = HBNBCommand.classes[args[0]]()
 
                 try:
