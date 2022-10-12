@@ -119,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
         if arg:
             try:
                 args = arg.split(" ")
-                new_instance = HBNBCommand.classes[args[0]]()
+                new_instance = type(self).classes[args[0]]()
 
                 try:
                     # validate attributes before populating class
