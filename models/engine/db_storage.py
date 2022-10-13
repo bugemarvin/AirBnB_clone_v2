@@ -47,18 +47,18 @@ class DBStorage:
             for c in classes.values():
                 objs = self.__session.query(c).all()
                 for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
+                    key = obj.type(self).__name__ + '.' + obj.id
                     dct[key] = obj
         else:
             objs = self.__session.query(cls).all()
             for obj in objs:
-                key = obj.__class__.__name__ + '.' + obj
+                key = obj.type(self).__name__ + '.' + obj
                 dct[key] = obj
         return dct
 
     def new(self, obj):
         """This adds objects to the current db session"""
-        if obj is not None:
+        if not obj == None:
             try:
                 self.__session.add(obj)
                 self.__session.flush()
