@@ -19,21 +19,30 @@ service nginx status
 if [ -e "$D" ];
 then
     echo "$D already exist"
-elif [ -e "$W" ];
+fi
+if [ -e "$W" ];
 then
     echo "$W already exist"
-elif [ -e "$R" ];
+fi
+if [ -e "$R" ];
 then
     echo "$R already exist"
-elif [ -e "$S" ];
+fi
+if [ -e "$S" ];
 then
     echo "$S already exist"
-elif [ -e "$T" ];
+fi
+if [ -e "$T" ];
 then
     echo "$T already exist"
-elif [ -e "$I" ];
+fi
+if [ -e "$I" ];
 then
     echo "$I already exist"
+fi
+if [ -e "$C" ]
+then
+    rm -rf $C
 else
     mkdir -p $D
     mkdir -p $W
