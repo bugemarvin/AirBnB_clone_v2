@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # installing nginx and folder and file creation
 D=/data
-W=/data/web_static
-R=/data/web_static/releases
-S=/data/web_static/shared
-T=/data/web_static/releases/test
-I=/data/web_static/releases/test/index.html
-C=/data/web_static/current
+W=$D/web_static
+R=$W/releases
+S=$W/shared
+T=$R/test
+I=$T/index.html
+C=$W/current
 apt-get -y update
 apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
@@ -56,11 +56,12 @@ else
     printf %s "server {
         listen 80;
         listen [::]:80 default_server;
+	root /var/www/;
 
         index index.html index.htm;
 
         location /hbnb_static/ {
-            alias   /data/web_static/current/;
+            alias   $C/;
         }
 
         location /redirect_me {
