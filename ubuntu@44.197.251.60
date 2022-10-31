@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# installing nginx and folder and file creation
+apt-get -y update
+apt-get -y install nginx
+D=/data
+W=/data/web_static
+R=/data/web_static/releases
+S=/data/web_static/shared
+T=/data/web_static/releases/test
+I=/data/web_static/releases/test/index.html
+if [ -d "$D" ];
+then
+    echo "$D already exist"
+elif [ -d "$W" ];
+then
+    echo "$W already exist"
+elif [ -d "$R" ];
+then
+    echo "$R already exist"
+elif [ -d "$S" ];
+then
+    echo "$S already exist"
+elif [ -d "$T" ];
+then
+    echo "$T already exist"
+elif [ -d "$I" ];
+then
+    echo "$I already exist"
+elif [ -e "$/data/web_static/current" && -L "$/data/web_static/current" ];
+then
+    rm -rf /data/web_static/current
+else
+    mkdir $D
+    mkdir $W
+    mkdir $R
+    mkdir $S
+    mkdir $T
+    touch $I
+    mkdir "$/data/web_static/current"
+    ln -s /data/web_static/current /data/web_static/releases/test
+fi
+chown -R "$USER":"$USER" "$D"
+chmod -R 755 "$D"
+mkdir /data/web_static/current/https://marvinkurland.tech
+mkdir /data/web_static/current/https://marvinkurland.tech/hbnb_static
+echo "Hello World!" > /data/web_static/current/https://marvinkurland.tech/hbnb_static/index.html
+echo "Ceci n'est pas une page" > /data/web_static/current/https://marvinkurland.tech/hbnb_static/404.html
+service nginx start
+service nginx status
+
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root    /data/web_static/current/https://marvinkurland.tech/hbnb_static;
+
+    index index.html index.htm;
+
+    location /redirect_me {
+        return 301 https://modtechy.ke/;
+    }
+
+    error_page 404 /404.html;
+
+    location /404 {
+        root /data/web_static/current/https://marvinkurland.tech/hbnb_static;
+        internal;
+    }
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
