@@ -50,12 +50,12 @@ else
     mkdir -p $S
     mkdir -p $T
     ln -s $T $C
-    chown -R ubuntu:ubuntu "$D"
+    chown -R ubuntu:ubuntu $D
+    chmod -R 755 $R
     echo "Hello World!" >> $I
     printf %s "server {
         listen 80;
         listen [::]:80 default_server;
-        root    /var/www/html;
 
         index index.html index.htm;
 
@@ -73,6 +73,6 @@ else
             root /var/www/html/404.html;
             internal;
         }
-}" > /etc/nginx/sites-available/default_server
+}" > /etc/nginx/sites-available/default
     service nginx restart
 fi
