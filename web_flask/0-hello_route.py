@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-'''Flask script to spin up web server
+'''
+	Flask script to spin up web server.
+	include of strict
 '''
 from flask import Flask
 
