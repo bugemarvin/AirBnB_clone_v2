@@ -36,6 +36,7 @@ def index_pys():
 def index_pyts(text):
     return "Python {}".format(escape(text.replace('_', ' ')))
 
+
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     return "{} is a number".format(escape(n))
