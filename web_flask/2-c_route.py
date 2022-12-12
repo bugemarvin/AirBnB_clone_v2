@@ -19,7 +19,7 @@ def index_hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def index_c(text):
-	return "C {}".format(escape(text.replace('_', ' ')))
+    return "C {}".format(escape(text.replace('_', ' ')))
 
 
 if __name__ == '__main__':
