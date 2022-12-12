@@ -34,7 +34,7 @@ def index_pys():
 
 @app.route('/python/<text>', strict_slashes=False)
 def index_pyts(text):
-    return "C {}".format(escape(text.replace('_', ' ')))
+    return "Python {}".format(escape(text.replace('_', ' ')))
 
 
 if __name__ == '__main__':
