@@ -50,8 +50,8 @@ else
     mkdir -p $S
     mkdir -p $T
     ln -s $T $C
-    chown -R ubuntu:ubuntu $W
-    chmod -R 755 $R
+    chown -R ubuntu:ubuntu $D
+    chmod -R 755 $D
     echo "Hello World!" >> $I
     printf %s "server {
         listen 80;
