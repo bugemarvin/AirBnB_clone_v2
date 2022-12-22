@@ -50,7 +50,7 @@ else
     mkdir -p $S
     mkdir -p $T
     ln -s $T $C
-    chown -R ubuntu:ubuntu $D
+    chown -R ubuntu:ubuntu $W
     chmod -R 755 $R
     echo "Hello World!" >> $I
     printf %s "server {
